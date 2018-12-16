@@ -10,7 +10,7 @@ const styles = theme => ({
   }
 });
 
-export class Home extends React.Component{
+export class Rules extends React.Component{
 
     render(){
 
@@ -19,7 +19,7 @@ export class Home extends React.Component{
       return (
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Home
+          Rules
           </Typography>
         </div>
       );
@@ -27,5 +27,5 @@ export class Home extends React.Component{
   
 }
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Rules);
 

@@ -12,6 +12,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Home from './components/home';
 import Register from './components/register';
+import Rules from './components/rules';
+import Schedule from './components/schedule';
+import GetStarted from './components/getStarted';
+import Faq from './components/faq';
 
 import _ from 'lodash';
 
@@ -31,8 +35,8 @@ const styles = theme => ({
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
+    [theme.breakpoints.up(1024 + theme.spacing.unit * 3 * 2)]: {
+      width: 1024,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -67,7 +71,7 @@ const footers = [
   },
   {
     title: 'Contact us',
-    description: ['Symphoney:CodeComp', 'Email:codecomp@db.list.com'],
+    description: ['Symphony:CodeComp', 'Email:codecomp@db.list.com'],
   }
 ];
 
@@ -86,11 +90,22 @@ export class App extends React.Component {
                 dbCodeComp
               </Typography>
               <NavLink exact={true} to="/" className={classes.menu} activeClassName={classes.activeMenu}><Button>Home</Button></NavLink>
-              <NavLink exact={false} to="/register" className={classes.menu} activeClassName={classes.activeMenu}><Button>Register</Button></NavLink>
+              <NavLink exact={false} to="/rules" className={classes.menu} activeClassName={classes.activeMenu}><Button>Rules</Button></NavLink>
+              <NavLink exact={false} to="/schedule" className={classes.menu} activeClassName={classes.activeMenu}><Button>Schedule</Button></NavLink>
+              <NavLink exact={false} to="/getstarted" className={classes.menu} activeClassName={classes.activeMenu}><Button>Get started</Button></NavLink>
+              <NavLink exact={false} to="/register" className={classes.menu} activeClassName={classes.activeMenu}><Button color="primary">Register</Button></NavLink>
+              <NavLink exact={false} to="/faq" className={classes.menu} activeClassName={classes.activeMenu}><Button>FAQ</Button></NavLink>
             </Toolbar>
           </AppBar>
-          <Route exact path="/" component={Home} />
-          <Route path="/register" component={Register} />
+          <main className={classes.layout}>
+            <Route exact path="/" component={Home} />
+            <Route path="/rules" component={Rules} />
+            <Route path="/schedule" component={Schedule} />
+            <Route path="/getstarted" component={GetStarted} />
+            <Route path="/register" component={Register} />
+            <Route path="/faq" component={Faq} />
+          </main>
+          
           {/* Footer */}
           <footer className={classNames(classes.footer, classes.layout)}>
             <Grid container spacing={32} justify="space-evenly">

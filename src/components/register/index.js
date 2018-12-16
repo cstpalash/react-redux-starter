@@ -1,32 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux'
 
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import * as actions from '../../reducers/registerReducer';
 
+import Teams from './teams';
+
 const styles = theme => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white,
-    },
+  root: {
+    flexGrow: 1,
   },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    height: 400
   },
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-  }
 });
 
 class Register extends React.Component{
@@ -36,28 +28,27 @@ class Register extends React.Component{
     const { classes } = this.props;
     
     return (
-      <main className={classes.layout}>
-          {/* Hero unit */}
-          <div className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Register
-            </Typography>
-          </div>
-          {/* End hero unit */}
-          
-      </main>
+      <div className={classes.root}>
+        <Grid container spacing={24}>
+          <Grid item xs={12} md={8}>
+            <Paper className={classes.paper}>
+              <Teams/>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Paper className={classes.paper}>
+              <Typography variant="h4" gutterBottom>
+                  Register
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
     );
   }
 
 }
 
-const mapStateToProps = state => ({
-  state: state.registerReducer
-})
-
-const mapDispatchToProps = dispatch => ({
-  register: () => dispatch(actions.register())
- })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Register));
+export default withStyles(styles)(Register);
