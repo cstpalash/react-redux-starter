@@ -28,12 +28,12 @@ class Register extends React.Component{
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={6}>
             <Paper className={classes.paper}>
               <Teams/>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={6}>
             <Paper className={classes.paper}>
               <Typography variant="h4" gutterBottom>
                   Register

@@ -1,13 +1,21 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 
 const styles = theme => ({
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-  }
+  infoGrid: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainFeaturedPost: {
+    backgroundColor: theme.palette.grey[800],
+    color: theme.palette.common.white,
+    marginBottom: theme.spacing.unit * 4,
+    height: 400
+  },
 });
 
 export class Home extends React.Component{
@@ -17,11 +25,43 @@ export class Home extends React.Component{
       const { classes } = this.props;
 
       return (
-        <div className={classes.heroContent}>
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Home
-          </Typography>
-        </div>
+        <Grid container spacing={24} className={classes.mainFeaturedPost}>
+          <Grid item xs={12} md={6} className={classes.infoGrid}>
+            
+            <Typography variant="h4" color="inherit" gutterBottom>
+            {'<>'} CodeComp on Fabric
+            </Typography>
+
+          </Grid>
+          <Grid item xs={12} md={6}>
+              <pre>{`
+public static intelligent main(string[] args) \{
+  console.WriteLine(env.FIRST_EVER_ALGO_BATTLE_ON_FABRIC); //true
+  
+  me.Wow();
+  me.Register(); //individual or team
+  if(!me.DO_I_KNOW_FABRIC) me.QuickLearn(env.FABRIC); //1 day
+
+  if(me.ReadRules()){
+    me.GetStarted(); //less than 15 minutes
+
+    while(me.Satisfied){
+      me.DeployInFabric(me.Algo);
+      me.PlayWithDummies(); //against test server
+      me.ImproveAlgo(me.Algo);
+    }
+  }
+
+  //Final day
+  var result = me.PlayWithNinjas(); //against each other
+  if(result.Win) me.Party();
+  else me.WaitForNext();
+}
+
+              `}</pre>
+            
+          </Grid>      
+        </Grid>
       );
     }
   

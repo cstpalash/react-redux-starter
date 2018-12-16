@@ -16,6 +16,7 @@ import Rules from './components/rules';
 import Schedule from './components/schedule';
 import GetStarted from './components/getStarted';
 import Faq from './components/faq';
+import ApiDoc from './components/apiDoc';
 
 import _ from 'lodash';
 
@@ -35,8 +36,8 @@ const styles = theme => ({
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1024 + theme.spacing.unit * 3 * 2)]: {
-      width: 1024,
+    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      width: 1100,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -90,11 +91,12 @@ export class App extends React.Component {
                 dbCodeComp
               </Typography>
               <NavLink exact={true} to="/" className={classes.menu} activeClassName={classes.activeMenu}><Button>Home</Button></NavLink>
-              <NavLink exact={false} to="/rules" className={classes.menu} activeClassName={classes.activeMenu}><Button>Rules</Button></NavLink>
+              <NavLink exact={false} to="/rules" className={classes.menu} activeClassName={classes.activeMenu}><Button>Game Rules</Button></NavLink>
               <NavLink exact={false} to="/schedule" className={classes.menu} activeClassName={classes.activeMenu}><Button>Schedule</Button></NavLink>
               <NavLink exact={false} to="/getstarted" className={classes.menu} activeClassName={classes.activeMenu}><Button>Get started</Button></NavLink>
-              <NavLink exact={false} to="/register" className={classes.menu} activeClassName={classes.activeMenu}><Button color="primary">Register</Button></NavLink>
+              <NavLink exact={false} to="/register" className={classes.menu} activeClassName={classes.activeMenu}><Button color="secondary">Register</Button></NavLink>
               <NavLink exact={false} to="/faq" className={classes.menu} activeClassName={classes.activeMenu}><Button>FAQ</Button></NavLink>
+              <NavLink exact={false} to="/apidef" className={classes.menu} activeClassName={classes.activeMenu}><Button>API Doc</Button></NavLink>
             </Toolbar>
           </AppBar>
           <main className={classes.layout}>
@@ -104,6 +106,7 @@ export class App extends React.Component {
             <Route path="/getstarted" component={GetStarted} />
             <Route path="/register" component={Register} />
             <Route path="/faq" component={Faq} />
+            <Route path="/apidef" component={ApiDoc} />
           </main>
           
           {/* Footer */}
