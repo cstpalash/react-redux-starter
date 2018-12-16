@@ -1,70 +1,62 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import DataTable from '../shared/dataTable';
 
-import * as actions from '../../reducers/registerReducer';
+import * as actions from '../../reducers/teamReducer';
 
-const data = [
-    ['Pinaka', 'India-Pune-MGP', 'palash.roy@db.com; gopi.ram@db.com'],
-    ['Astra', 'India-Pune-BB', 'adam.spencer@db.com; michael.lamb@db.com'],
-    ['Barak', 'UK-London-CW', 'sayeed.chowdhury@db.com; pawan.acharya@db.com'],
-    ['Trishul', 'US-Carry', 'suart.cookson@db.com; tom.guilbert@db.com'],
-    ['Prithvi', 'Singapore', 'guy.sayar@db.com; pankaj.hasija@db.com']
-  ];
-  
-  let id = 0;
-  function createData(name, location, members) {
-    id += 1;
-    return { id, name, location, members };
-  }
-  
-  const rows = [];
-  
-  for (let i = 0; i < 200; i += 1) {
-    const randomSelection = data[Math.floor(Math.random() * data.length)];
-    rows.push(createData(...randomSelection));
-  }
+const styles = theme => ({
+    progress: {
+        margin: theme.spacing.unit * 2,
+    }
+});
 
 class Teams extends React.Component{
+    componentDidMount(){
+        this.props.fetchTeams();
+    }
     render(){
+
+        console.log('render - team');
         const { classes } = this.props;
 
-        return  <DataTable
+        let rows = this.props.state.teams;
+        let teamLabel = 'Team (Total:' + rows.length + ')';
+        let columnDef = [
+            {
+                width: 300,
+                flexGrow: 1.0,
+                label: teamLabel,
+                dataKey: 'name'
+            },
+            {
+                width: 300,
+                label: 'Location',
+                dataKey: 'location'
+            }
+        ];
+
+        return  this.props.state.busy ? <CircularProgress className={classes.progress} /> :
+                <DataTable
                     rowCount={rows.length}
                     rowGetter={({ index }) => rows[index]}
                     onRowClick={event => console.log(event)}
-                    columns={[
-                        {
-                            width: 150,
-                            flexGrow: 1.0,
-                            label: 'Team',
-                            dataKey: 'name',
-                        },
-                        {
-                            width: 150,
-                            label: 'Location',
-                            dataKey: 'location'
-                        },
-                        {
-                            width: 300,
-                            label: 'Members',
-                            dataKey: 'members'
-                        }
-                    ]}
+                    columns={columnDef}
                 />
         
     }
 }
 
 const mapStateToProps = state => ({
-    state: state.registerReducer
+    state: state.teamReducer
 })
 
 const mapDispatchToProps = dispatch => ({
-    register: () => dispatch(actions.register())
+    fetchTeams: () => dispatch(actions.fetchTeams())
 })
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(Teams);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Teams));
